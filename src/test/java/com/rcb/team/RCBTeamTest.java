@@ -12,7 +12,7 @@ public class RCBTeamTest
     public static final String nativeCountry="india";
     
 	@Test
-	public void validateForeignPlayers()
+	public void validateForeignPlayers() // This test validates that team has only 4 foreign players
 	{
 		try {
 			String teamDetails=JsonUtils.convertJsonFileToString("teamDetails");
@@ -34,7 +34,7 @@ public class RCBTeamTest
 	}
 	
 	@Test
-	public void validateWicketKeeper() {
+	public void validateWicketKeeper() { // This test validates that team has atleast 1 wicket keeper
 		try {
 			String teamDetails=JsonUtils.convertJsonFileToString("teamDetails");
 			JsonPath jsonPath=new JsonPath(teamDetails);
