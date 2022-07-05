@@ -29,7 +29,32 @@ public class RCBTeamTest
 			}
 			Assert.assertEquals(actualForeignPlayers, expectedForeignPlayers);
 		} catch(Exception e) {
-
+			System.out.println("Excepton occured : " + e);
+		}
+	}
+	
+	@Test
+	public void validateWicketKeeper() {
+		try {
+			String teamDetails=JsonUtils.convertJsonFileToString("teamDetails");
+			JsonPath jsonPath=new JsonPath(teamDetails);
+			int totalNumberOfPlayers=jsonPath.get("player.size()");
+			int actualWicketKeepers=0;
+			int expectedWicketKeepers=1;
+			for(int playerCount=0;playerCount<totalNumberOfPlayers;playerCount++) {
+				if(jsonPath.getString("player["+playerCount+"].role").equalsIgnoreCase("Wicket-keeper"));
+				{
+					actualWicketKeepers++;
+					if(actualWicketKeepers==1) {
+						break;
+					}
+				}
+			}
+			if(actualWicketKeepers >= expectedWicketKeepers) {
+				Assert.assertTrue(true);
+			}
+		} catch(Exception e) {
+			System.out.println("Excepton occured : " + e);
 		}
 	}
 }
